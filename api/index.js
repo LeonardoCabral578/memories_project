@@ -1,9 +1,12 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
+import express from "express";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 import cors from "cors";
 
-app.listen(8800, () => {
-  console.log("Backend server is running!");
-});
+const app = express();
+
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
+
+const CONNECTION_URL = process.env.CONNECTION;
